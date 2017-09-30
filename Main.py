@@ -2,6 +2,6 @@
 import file
 import info
 
-fileName = file.findFile("Korea, South")
+fileName = file.findFile("Canada")
 print(fileName)
-print(info.findLiterracy(fileName))
+print(info.findHazard(fileName))
