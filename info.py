@@ -22,8 +22,14 @@ def findAnthem(fileName):
     country_file.close()
     raw_result = result.group(2)
     pattern_non_english = re.compile("(\".*\")( )(\()(.*)(\))")
-
-    return 
+    pattern_english = re.compile("(\")(.*)(\")")
+    result_non_english = pattern_non_english.search(raw_result)
+    result_english = pattern_english.search(raw_result)
+    if(result_non_english):
+        return result_non_english.group(4)
+    if(result_english):
+        return result_english.group(2)
+    return raw_result
 
 
 def findLiterracy(fileName):
