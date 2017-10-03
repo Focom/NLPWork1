@@ -5,26 +5,25 @@ def findAnthem(fileName):
     memory = []
     i = 0
 
-    pattern_all_file = re.compile("playAnthem")
+    pattern_all_file = re.compile("<span class=\"category_data\" style=\"font-weight:normal; vertical-align:bottom;\">\"")
     country_file = open("./factbook/geos/" + fileName, "r", encoding="utf8")
 
     for line in country_file:
-        memory.insert(i, line)
         i = i + 1
         test = pattern_all_file.search(line)
         if test:
+            good_line = line
             break
-    good_line = memory[-6]
 
     # print(good_line)
     pattern_good_line = re.compile("(;\">)(.*)(<\/span>)")
     result = pattern_good_line.search(good_line)
-    country_file.close()
     raw_result = result.group(2)
     pattern_non_english = re.compile("(\".*\")( )(\()(.*)(\))")
     pattern_english = re.compile("(\")(.*)(\")")
     result_non_english = pattern_non_english.search(raw_result)
     result_english = pattern_english.search(raw_result)
+    country_file.close()
     if(result_non_english):
         return result_non_english.group(4)
     if(result_english):
@@ -38,14 +37,14 @@ def findLiterracy(fileName):
     j = 0
     condition_met = False
 
-    pattern_all_file = re.compile("age 15 and over can read and write")
+    pattern_all_file = re.compile("age 15 and over")
     country_file = open("./factbook/geos/" + fileName, "r", encoding="utf8")
 
     for line in country_file:
         if (condition_met):
             memory.insert(i, line)
             j = j + 1
-            if(j == 7):
+            if(j == 12):
                 break
         else:
             memory.insert(i, line)
@@ -53,8 +52,8 @@ def findLiterracy(fileName):
             test = pattern_all_file.search(line)
             if test:
                 condition_met = True
-    good_line = memory[-7]
-    pattern_good_line = re.compile("(;\">)(.*)(<\/span)")
+    good_line = memory[-12]
+    pattern_good_line = re.compile("(;\">)(.*)( <\/span)")
     result = pattern_good_line.search(good_line)
     country_file.close()
     return result.group(2)
@@ -84,10 +83,10 @@ def findExport(fileName):
                 condition_met = True
     good_line = memory[-9]
     pattern_good_line = re.compile("(\">)(.*)(<\/div)")
-    raw_result = pattern_good_line.search(good_line).group(2)  # 566 billion (est 2013)
+    raw_result = pattern_good_line.search(
+        good_line).group(2)  # 566 billion (est 2013)
     pattern_money = re.compile("(\$)(\d*.*)( .*ion)")
     clean_result = pattern_money.search(raw_result)
-
 
     sum = clean_result.group(2)
     float_sum = float(sum)
@@ -203,9 +202,9 @@ def findHazard(fileName):
     size_memory = len(memory)
     starting_number = size_memory - 150
     hazard_pattern1 = re.compile(".[wW]ind.")
-    hazard_pattern2 = re.compile(".[Hh]urricanes.")
+    hazard_pattern2 = re.compile(".[Hh]urricane.")
     hazard_pattern3 = re.compile(".[Cc]yclone.")
-    hazard_pattern4 = re.compile(".[Tt]yphoons.")
+    hazard_pattern4 = re.compile(".[Tt]yphoon.")
 
     result = False
 
@@ -236,6 +235,7 @@ def findHazard(fileName):
 
 
 def findExecutive(fileName):
+
     memory = []
     i = 0
     Title = ""
@@ -251,7 +251,7 @@ def findExecutive(fileName):
             test_span = pattern_span.search(line)
             if(test_span):
                 raw_result = test_span.group(2)
-                print(test_span.group(2))
+                # print(test_span.group(2))
                 break
         else:
             memory.insert(i, line)
@@ -286,16 +286,47 @@ def findExecutive(fileName):
             Title = "President"
             break
         k += 1
-        if (k == 10000000000):
+        if (k == 10000):
             Title = "Unknown"
             break
-    # print(Title)
-        # (President)(.*)(\(since)
-    #print (name_head_of_state.group(2))
 
-    pattern_name = re.compile("(" + Title + ")(.*)(\(since)")
+    pattern_name = re.compile("(" + Title + " )(.*)( \(since)")
     name_head_of_state = pattern_name.search(raw_result)
 
     country_file.close()
 
     return(name_head_of_state.group(2) + ", " + Title)
+
+
+def findDiplomacy(fileName):
+    memory = []
+    i = 0
+    j = 0
+    condition_met = False
+
+    pattern_all_file = re.compile("mailing address:")
+    country_file = open("./factbook/geos/" + fileName,
+                        "r", encoding="utf8")
+
+    for line in country_file:
+        if (condition_met):
+            memory.insert(i, line)
+            j = j + 1
+            if(j == 2):
+                break
+        else:
+            memory.insert(i, line)
+            i = i + 1
+            test = pattern_all_file.search(line)
+            if test:
+                condition_met = True
+    
+    good_line = memory[-2]
+    pattern_good_line = re.compile("(\">)(.*)(<\/span)")
+    result = pattern_good_line.search(good_line)
+    country_file.close()
+    raw_result = result.group(2)
+    print(raw_result)
+    # pattern_percent = re.compile("(.*%)")
+    # end_result = pattern_percent.search(raw_result)
+    #return end_result.group(1)

@@ -1,6 +1,5 @@
 import re
 
-
 def findFile(country):
     file = open("./factbook/index.html", "r", encoding="utf8")
     paysPattern = re.compile(country)
@@ -14,9 +13,3 @@ def findFile(country):
     result = re.search(filePattern, goodLine)
     file.close()
     return result.group(2)
-
-
-''' rechereche pays sur la ligne 
-extract de la ligne
-optention du code pays
-ouverture du bon fichier html '''
