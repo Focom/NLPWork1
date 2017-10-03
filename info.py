@@ -292,6 +292,8 @@ def findExecutive(fileName):
 
     pattern_name = re.compile("(" + Title + " )(.*)( \(since)")
     name_head_of_state = pattern_name.search(raw_result)
+    if (name_head_of_state == None):
+        return "Unknown"
 
     country_file.close()
 
