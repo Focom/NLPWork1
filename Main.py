@@ -68,7 +68,3 @@ def test_work(correct_table):
 
 print(test_work(get_info_csv()))
 # print(get_wfb_info("United Kingdom","DIPLOMATIC_REPRESENTATION_FROM_US"))
-
-# fileName = file.findFile("Italy")
-# print(fileName)
-# print(info.findDiplomacy(fileName))
