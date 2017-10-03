@@ -324,11 +324,19 @@ def findDiplomacy(fileName):
                 condition_met = True
     
     good_line = memory[-2]
-    pattern_good_line = re.compile("(\">)(.*)(<\/span)")
-    result = pattern_good_line.search(good_line)
+    pattern_good_line = re.compile("(\>)([\w\W]*[FA]PO*) ([\w\W]*<\/span)") #Cas de FPO
+    result1 = pattern_good_line.search(good_line)
+    if(result1 == None):
+        pattern_none_fbo = re.compile("(\>)(B?[P\. O]*[\w\W]*?,[\w\W]*?)[,<]([\w\W]*<\/span)?")
+        result2 = pattern_none_fbo.search(good_line)
+        if(result2 == None):
+            return "Unknown"
+        else:
+            return result2.group(2)
+    else:
+        return result1.group(2)  
     country_file.close()
-    raw_result = result.group(2)
-    print(raw_result)
+    
     # pattern_percent = re.compile("(.*%)")
     # end_result = pattern_percent.search(raw_result)
     #return end_result.group(1)

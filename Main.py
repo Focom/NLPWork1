@@ -45,10 +45,10 @@ def get_info_csv():
 
 def test_work(correct_table):
     i = 0
+    correct = 0
+    bad = 0
     attribut = ""
     for answer in correct_table:
-        # if(i==0):
-        #   pass
         pays = answer[0]
 
         if(attribut != answer[1]):
@@ -59,12 +59,15 @@ def test_work(correct_table):
         own_result = get_wfb_info(pays, attribut)
         if (correction == own_result):
             print('OK')
+            correct += 1
         else:
             print('bad')
+            bad += 1
+    precision = (correct)/(correct+bad)*100
+    return "Taux de précision avec le CSV de test: "+str(precision)+"%"
 
-
-test_work(get_info_csv())
-# print(get_wfb_info("United Kingdom","LITERACY"))
+print(test_work(get_info_csv()))
+# print(get_wfb_info("United Kingdom","DIPLOMATIC_REPRESENTATION_FROM_US"))
 
 # fileName = file.findFile("Italy")
 # print(fileName)
