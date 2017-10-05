@@ -139,20 +139,20 @@ venv.bak/
 .history
 
 # End of https://www.gitignore.io/api/macos,python,visualstudiocode
-/factbook/print
-/factbook/js
-/factbook/images
-/factbook/graphics
-/factbook/fonts
-/factbook/fields
-/factbook/appendix
-/factbook/css
-/factbook/rankorder
-/factbook/styles
-/factbook/wfbExt
-/factbook/docs
-/factbook/geos/print
-/factbook/geos/jwplayer
-/factbook/geos/wfb_photo_gallery
-/factbook/scripts
-/factbook/
+/Exo1/factbook/print
+/Exo1/factbook/js
+/Exo1/factbook/images
+/Exo1/factbook/graphics
+/Exo1/factbook/fonts
+/Exo1/factbook/fields
+/Exo1/factbook/appendix
+/Exo1/factbook/css
+/Exo1/factbook/rankorder
+/Exo1/factbook/styles
+/Exo1/factbook/wfbExt
+/Exo1/factbook/docs
+/Exo1/factbook/geos/print
+/Exo1/factbook/geos/jwplayer
+/Exo1/factbook/geos/wfb_photo_gallery
+/Exo1/factbook/scripts
+/Exo1/factbook/
