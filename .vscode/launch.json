@@ -11,7 +11,7 @@
       "request": "launch",
       "stopOnEntry": true,
       "pythonPath": "${config:python.pythonPath}",
-      "program": "${workspaceRoot}/Main.py",
+      "program": "${workspaceRoot}/Exo2/Main.py",
       "cwd": "${workspaceRoot}",
       "env": {},
       "envFile": "${workspaceRoot}/.env",
