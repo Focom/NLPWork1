@@ -1,35 +1,5 @@
-
-
-# def gram():
-    # total_charater = 0
-    # file = open(
-    #     "./detect_langue/corpus_entrainement/english-training.txt", "r", encoding="utf8")
-    # dictionairy = {}
-    # for line in file:
-    #   for char in line:
-    #     dictionairy[char] = 0
-    #     total_charater +=1
-
-    # filesecond  = open(
-    #     "./detect_langue/corpus_entrainement/english-training.txt", "r", encoding="utf8")
-    # for line in filesecond:
-    #   for char in line:
-    #     dictionairy[char]+=1
-    # print ("Comptes des characteres")
-    # print(dictionairy)
-    # print(total_charater)
-
-    # i = 0
-
-    # for char in dictionairy:
-    #   dictionairy[char] = dictionairy[char]/total_charater
-    # print("Proba des charactere")
-    # print(dictionairy)
-
-
-# gram()
-
 fileName = "./detect_langue/corpus_entrainement/english-training.txt"
+
 
 def Create_empty_int_dictionary(fileName):
     file = open(
@@ -52,9 +22,9 @@ def Get_lengh_of_file(fileName):
 
 
 def Create_occurence_dictionary(fileName, emptyDictionary):
-    filesecond = open(
-        "./detect_langue/corpus_entrainement/english-training.txt", "r", encoding="utf8")
-    for line in filesecond:
+    file = open(
+        fileName, "r", encoding="utf8")
+    for line in file:
         for char in line:
             emptyDictionary[char] += 1
     return emptyDictionary
@@ -71,14 +41,36 @@ def transform_Occurence_in_probabilist(fileName, OccurenceDictionary):
     # print("Proba des charactere")
     # print(dictionairy)
 
+
 def create_empty_bigram_dictionary(emptyDictionary):
-  result = {}
-  for char in emptyDictionary:
-    result[char]=emptyDictionary.copy()
-  return result
+    result = {}
+    for char in emptyDictionary:
+        result[char] = emptyDictionary.copy()
+    return result
 
-def fill_bigram_dictionary(emptyBigramDictionary):
-  
 
+def Fill_bigram_dictionary(fileName, emptyBigramDictionary):
+    file = open(
+       fileName, "r", encoding="utf8")
+    for line in file:
+        for i in range(0, len(line) - 1):
+            emptyBigramDictionary[line[i]][line[i + 1]] += 1
+    return emptyBigramDictionary
 # print(create_empty_bigram_dictionary(Create_empty_int_dictionary(fileName)))
 
+def Transform_in_proba_bigram(filledBigramDictionary):
+  for tuple in filledBigramDictionary:
+    firstChar = tuple
+    for char in tuple:
+      filledBigramDictionary[firstChar][char]= filledBigramDictionary[firstChar][char]/Calc_sum_line(tuple)
+  return filledBigramDictionary
+
+def Calc_sum_line(simpleDico):
+  sum = 0
+  for key in simpleDico:
+    sum += simpleDico[key]
+  return sum
+
+
+print(Transform_in_proba_bigram(Fill_bigram_dictionary(fileName, create_empty_bigram_dictionary(
+    Create_empty_int_dictionary(fileName)))))
