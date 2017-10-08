@@ -12,8 +12,6 @@ def Create_empty_unigram(fileName):
     return dictionairy
 
 # return lengh of file
-
-
 def Get_lengh_of_file(fileName):
     total_charater = 0
     file = open(
@@ -24,8 +22,6 @@ def Get_lengh_of_file(fileName):
     return total_charater
 
 #{"a" = 9," ":1000 }
-
-
 def Count_unigram(fileName, emptyDictionary):
     file = open(
         fileName, "r", encoding="utf8")
@@ -35,26 +31,24 @@ def Count_unigram(fileName, emptyDictionary):
     return emptyDictionary
 
 #{"a" = 0.00001," ":0.3 }
-
-
 def transform_Occurence_in_probabilist(fileName, OccurenceDictionary):
     for char in OccurenceDictionary:
         OccurenceDictionary[char] = OccurenceDictionary[char] / \
             Get_lengh_of_file(fileName)
     return OccurenceDictionary
 
+def proba_unigram(fileName):
+    return transform_Occurence_in_probabilist(fileName,Count_unigram(fileName,Create_empty_unigram(fileName)))
+
 #{"a" = {"a":0, " ":0, ...}," ":{"a":0, " ":0, ...} }
-
-
 def create_empty_bigram_dictionary(emptyDictionary):
     result = {}
     for char in emptyDictionary:
         result[char] = emptyDictionary.copy()
     return result
 
+
 #{"a" = {"a":9, " ":5, ...}," ":{"a":3, " ":4, ...} }
-
-
 # create occurence of bigram
 def Fill_bigram_dictionary(fileName, emptyBigramDictionary):
     file = open(
@@ -65,8 +59,6 @@ def Fill_bigram_dictionary(fileName, emptyBigramDictionary):
     return emptyBigramDictionary
 
 #{"a" = {"a":0.1, " ":0.2, ...}," ":{"a":0.002, " ":0.000, ...} }
-
-
 def Transform_in_proba_bigram(filledBigramDictionary):
     unigram = Count_unigram(fileName, Create_empty_unigram(fileName))
     for tuple in filledBigramDictionary:
@@ -79,9 +71,10 @@ def Transform_in_proba_bigram(filledBigramDictionary):
                 filledBigramDictionary[first_char][char] = 0
     return filledBigramDictionary
 
+def proba_bigram(fileName):
+    return Transform_in_proba_bigram(Fill_bigram_dictionary(fileName, create_empty_bigram_dictionary(Create_empty_unigram(fileName))))
+
 # calcule la somme de tous les elements du dictionaire
-
-
 def Calc_sum_line(simpleDico):
     sum = 0
     for key in simpleDico:
@@ -89,8 +82,6 @@ def Calc_sum_line(simpleDico):
     return sum
 
 #{"abc":0,", e":0, ...}
-
-
 def Create_empty_trigram_count(fileName):
     file = open(
         fileName, "r", encoding="utf8")
@@ -101,8 +92,6 @@ def Create_empty_trigram_count(fileName):
     return dictionairy
 
 #{"ab":{"A":0.43," ":0.001}," e":{"A":0.002," ":0.0032}}
-
-
 def Create_2d_Trigram(trigramCount, fileName):
     file = open(
         fileName, "r", encoding="utf8")
@@ -122,9 +111,10 @@ def Create_2d_Trigram(trigramCount, fileName):
                 pass
     return result
 
+def proba_trigram(fileName):
+    return Create_2d_Trigram(Count_trigram(fileName,Create_empty_trigram_count(fileName)),fileName)
+
 #{"abc":5,", e":6, ...}
-
-
 def Count_trigram(fileName, emptyTrigram):
     file = open(
         fileName, "r", encoding="utf8")
@@ -150,7 +140,7 @@ def countBigram(fileName):
     return emptyBigram
 
 
-def laplace(n, fileName):
+def laplace(k, n, fileName):
 
     result = {}
     count_unigram = Count_unigram(fileName, Create_empty_unigram(fileName))
@@ -159,32 +149,47 @@ def laplace(n, fileName):
         result = create_empty_bigram_dictionary(Create_empty_unigram(fileName))
         conditional_count = Fill_bigram_dictionary(
             fileName, create_empty_bigram_dictionary(Create_empty_unigram(fileName)))
+        # return conditional_count
         for table in conditional_count:
-            for key in table:
-                result[table][key] = (conditional_count[table][key] + 1) / (count_unigram[table] + v)
-                
-                # result[table][key] = (conditional_count[table][key] + 1) / (count_unigram[table] + v)
-    
-    
+            for key in conditional_count[table]:
+                # print("table:",table," key:",key)
+                result[table][key] = (conditional_count[table][key] + k) / (count_unigram[table] + v*k)
+
     if(n == 3):
         result = Create_2d_Trigram(Count_trigram(fileName, Create_empty_trigram_count(fileName)),fileName)
         count_trigram = Count_trigram(fileName, Create_empty_trigram_count(fileName))
         count_bigram = countBigram(fileName)
         for table in result:
-            for key in table:
-                result[table][key] = (count_trigram[table + key] + 1) / (count_bigram[table] + v)
-
+            for key in result[table]:
+                try:
+                    result[table][key] = (count_trigram[table+key] + k) / (count_bigram[table] + v*k)
+                except KeyError:
+                    result[table][key] =  1 / (count_bigram[table] + v)
     return result
 
-   # retourne V, soit le nombre de charactere du corpus
-
-
+# retourne V, soit le nombre de charactere du corpus
 def count_token(fileName):
     test = Count_unigram(fileName, Create_empty_unigram(fileName))
     return len(test)
 
+def lissage(n,fileName):
+    if (n==3):
+        d = 1/n
+        trigram = proba_trigram(fileName)
+        bigram = proba_bigram(fileName)
+        unigram = proba_unigram(fileName)
+        for table in trigram:
+            for key in trigram[table]:
+                trigram[table][key] = d*trigram[table][key]+d*bigram[table[1]][key]+d*unigram[key]
+        return trigram
+    if (n==2):
+        d = 1/n
+        unigram = proba_unigram(fileName)
+        bigram = proba_bigram(fileName)
+        for table in bigram:
+            for key in bigram[table]:
+                bigram[table][key] = d*bigram[table][key]+d*unigram[key]     
+        return bigram  
+        
 
-print(laplace(2, fileName))
-
-# print(Transform_in_proba_bigram(Fill_bigram_dictionary(fileName, create_empty_bigram_dictionary(
-#     Create_empty_unigram(fileName)))))
+print(lissage(3,fileName))
