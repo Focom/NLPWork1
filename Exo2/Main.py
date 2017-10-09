@@ -104,9 +104,11 @@ def Create_2d_Trigram(trigramCount, fileName):
 
     for key in result:
         for char in key:
+            if ((key=="A ") & (char=="c" )):
+                print(trigramCount[key + char] / count_bigram[key])
+                break
             try:
-                result[key][char] = trigramCount[key + char] / \
-                    count_bigram[key]
+                result[key][char] = trigramCount[key + char] / count_bigram[key]
             except KeyError:
                 pass
     return result
@@ -173,6 +175,9 @@ def count_token(fileName):
     return len(test)
 
 def lissage(n,fileName):
+    print("\n")
+    print("n: ",n)
+    print("##########################################################################################")
     if (n==3):
         d = 1/n
         trigram = proba_trigram(fileName)
@@ -181,6 +186,13 @@ def lissage(n,fileName):
         for table in trigram:
             for key in trigram[table]:
                 trigram[table][key] = d*trigram[table][key]+d*bigram[table[1]][key]+d*unigram[key]
+                # if ((table=="A ") & (key=="c" )):
+                #     print("les clés: ",table,key)
+                #     print("uni: ",unigram[key])
+                #     print("bigram: ",bigram[table[1]][key])
+                #     print("Trigram: ",trigram[table][key])
+                #     print(d*trigram[table][key]+d*bigram[table[1]][key]+d*unigram[key])
+                    # return None
         return trigram
     if (n==2):
         d = 1/n
@@ -190,6 +202,78 @@ def lissage(n,fileName):
             for key in bigram[table]:
                 bigram[table][key] = d*bigram[table][key]+d*unigram[key]     
         return bigram  
-        
 
-print(lissage(3,fileName))
+# print(proba_unigram(fileName))
+
+def perplexite(n,gram,fileName):
+    result=[]
+    testFile = open(
+        fileName, "r", encoding="utf8")
+    lineToCalculate={}
+    charToAnalyse = ""
+    for line in textFile:
+        for i in range(0,len(line)):
+           
+            if (n==1):
+                return None
+            if (n==2):
+                lineToCalculate = gram[line[i]]
+                charToAnalyse = line[i]
+            # if(n==3):
+                # lineToCalculate = gram[[line[i]+Line[i+1]]
+                # charToAnalyse = line[i+1]
+            # result.append("a")
+
+    return None
+
+def addUnk(n,gram,fileName):
+    unk = {}
+    """
+    ajout de tuple de nom unk
+    remplir le tuple unk avec {a:0,....,unk:0}
+    ajouter la clé unk:0 a la fin de chaque tuple
+    """
+    if(n==2):
+        unk = Create_empty_unigram(fileName)
+        gram["¤"]=unk
+        for tuple in gram:
+            gram[tuple]["¤"]=0
+        return gram
+    if(n==3):
+        empty_unigram = Create_empty_unigram(fileName)
+        empty_unigram["¤"] = 0
+        compo = []
+        # print(empty_unigram)
+        for key in empty_unigram: # On creer les compos
+            compo.append("¤"+key)
+            compo.append(key+"¤")
+        
+            for tuple in gram: # Aujoute toutes les compos aux autres lignes
+                for combi in compo:
+                    gram[tuple][combi]=0
+
+        for combi in compo:
+            gram[combi]=empty_unigram
+        print (gram)
+        return None
+
+def calcPerplexite(dic):
+    result = 0
+    proba = []
+    for key in dic:
+        proba.append(dic[key])
+    
+    # for p in proba:
+
+    return result
+
+
+print(addUnk(3,proba_trigram(fileName),fileName))
+
+
+# lissage(3,fileName)
+# print(countBigram(fileName)["A "])
+# print(Count_trigram(fileName,Create_empty_trigram_count(fileName))["A c"])
+# proba_trigram(fileName)
+# for table in lissage(3,fileName):
+#     print(Calc_sum_line(table))
