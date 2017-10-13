@@ -72,7 +72,6 @@ def calcPerplexite(n,fileTraining,fileTest):
       closeGram = trigram.proba_trigram(fileTraining)
       openGram = helper.addUnk(3,closeGram,fileTraining)
       smoothedGram = lissage.laplace(1,3,openGram,fileTraining)
-      helper.save_dic_to_file(smoothedGram,'smoothedgram')
       file = open(
         fileTest, "r", encoding="utf8")
       for line in file:
