@@ -1,3 +1,5 @@
+import unigram
+
 def char_in_file(fileName):
     file = open(
         fileName, "r", encoding="utf8")
@@ -26,10 +28,39 @@ def Calc_sum_line(simpleDico):
 
   # retourne V, soit le nombre de charactere du corpus
 def count_token(fileName):
-    test = Count_unigram(fileName, Create_empty_unigram(fileName))
+    test = unigram.Count_unigram(fileName, unigram.Create_empty_unigram(fileName))
     return len(test)
 
 def save_dic_to_file(dic,namOfFile):
     text_file = open(namOfFile+".txt", "w", encoding="utf8")
     text_file.write(str(dic))
     text_file.close()
+
+# Ajoute le token ¤ au modele ngram vide
+def addUnk(n,gram,fileName):
+    """
+    ajout de tuple de nom unk
+    remplir le tuple unk avec {a:0,....,unk:0}
+    ajouter la clé unk:0 a la fin de chaque tuple
+    """
+    if(n==1):
+        gram["¤"]=0
+        return gram
+
+    if(n==2):
+        empty_uni = unigram.Create_empty_unigram(fileName)
+        gram["¤"]=empty_uni
+        for tuple in gram:
+            gram[tuple]["¤"]=0
+        return gram
+    if(n==3):
+        empty_unigram = unigram.Create_empty_unigram(fileName)
+        empty_unigram["¤"] = 0
+        compo = []
+        for tuple in gram:
+            gram[tuple]["¤"]=0
+
+        gram["¤¤"]=0
+        gram["¤¤"]=empty_unigram
+
+        return gram
