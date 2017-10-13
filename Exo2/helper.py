@@ -1,4 +1,6 @@
 import unigram
+import pickle
+import sys
 
 def char_in_file(fileName):
     file = open(
@@ -64,3 +66,48 @@ def addUnk(n,gram,fileName):
         gram["¤¤"]=empty_unigram
 
         return gram
+
+def serialize_dico(dico,NameFile):
+    file1 = open("./binPP/"+NameFile+".bin","wb")
+    pickle.dump(dico,file1)
+    file1.close()
+
+def open_serialized_dico(NameFile):
+    file2 = open("./binPP/"+NameFile+".bin","rb")
+    return pickle.load(file2)
+
+dic = {"1":32,"a,":0.2}
+
+
+
+def query_yes_no(question, default="yes"):
+    """Ask a yes/no question via raw_input() and return their answer.
+
+    "question" is a string that is presented to the user.
+    "default" is the presumed answer if the user just hits <Enter>.
+        It must be "yes" (the default), "no" or None (meaning
+        an answer is required of the user).
+
+    The "answer" return value is True for "yes" or False for "no".
+    """
+    valid = {"yes": True, "y": True, "ye": True,
+             "no": False, "n": False}
+    if default is None:
+        prompt = " [y/n] "
+    elif default == "yes":
+        prompt = " [Y/n] "
+    elif default == "no":
+        prompt = " [y/N] "
+    else:
+        raise ValueError("invalid default answer: '%s'" % default)
+
+    while True:
+        sys.stdout.write(question + prompt)
+        choice = input().lower()
+        if default is not None and choice == '':
+            return valid[default]
+        elif choice in valid:
+            return valid[choice]
+        else:
+            sys.stdout.write("Please respond with 'yes' or 'no' "
+                             "(or 'y' or 'n').\n")
