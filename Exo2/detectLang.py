@@ -60,6 +60,8 @@ def detect_language(fileNumber,n):
   print("la langue:",lang,"le score:",score)
   return lang
 
-detect_language(3,1)
-detect_language(3,2)
-detect_language(3,3)
+file1 = 19
+
+detect_language(file1,1)
+detect_language(file1,2)
+detect_language(file1,3)
