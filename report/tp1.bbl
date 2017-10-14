@@ -1,0 +1,36 @@
+\newcommand{\SortNoop}[1]{}
+\begin{thebibliography}{}
+\expandafter\ifx\csname fonteauteurs\endcsname\relax
+\def\fonteauteurs{\scshape}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}%
+    \message{You should include the url package}\fi
+
+\bibitem[Bell, 1964]{Bell}
+\bgroup\fonteauteurs\bgroup Bell\egroup\egroup{}, J. (1964).
+\newblock On the {E}instein {P}odolsky {R}osen paradox.
+\newblock {\em Physics}, 1(3)\string:\penalty500\relax 195--200.
+
+\bibitem[Einstein \emph{et~al.}, 1935]{EPR35}
+\bgroup\fonteauteurs\bgroup Einstein\egroup\egroup{}, A.,
+  \bgroup\fonteauteurs\bgroup Podolsky\egroup\egroup{}, B. et
+  \bgroup\fonteauteurs\bgroup Rosen\egroup\egroup{}, N. (1935).
+\newblock Can quantum-mechanical description of physical reality be considered
+  complete?
+\newblock {\em Physical Review}, 47\string:\penalty500\relax 777--780.
+
+\bibitem[Greenberger \emph{et~al.}, 1989]{GHZ}
+\bgroup\fonteauteurs\bgroup Greenberger\egroup\egroup{}, D.,
+  \bgroup\fonteauteurs\bgroup Horne\egroup\egroup{}, M. et
+  \bgroup\fonteauteurs\bgroup Zeilinger\egroup\egroup{}, A. (1989).
+\newblock Going beyond {B}ell's theorem.
+\newblock \emph{In} \bgroup\fonteauteurs\bgroup Kafatos\egroup\egroup{}, M.,
+  \'editeur :  {\em Bell's Theorem, Quantum Theory and Conceptions of the
+  Universe}, pages 69--72. Kluwer Academic Publishers.
+
+\bibitem[Mermin, 1990]{Boojums}
+\bgroup\fonteauteurs\bgroup Mermin\egroup\egroup{}, N. (1990).
+\newblock {\em Boojums all the way through}.
+\newblock Cambridge University Press.
+
+\end{thebibliography}

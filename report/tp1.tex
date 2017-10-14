@@ -1,0 +1,102 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Ce gabarit peu servir autant les philosophes que les scientifiques ; 
+% et même d'autres genres, vous en faites ce que vous voulez.
+% J'ai modifié et partagé ce gabarit afin d'épargner à d'autres 
+% d'interminables heures à modifier des gabarits d'articles anglais. 
+% 
+% L'ajout d'une table des matières et une bibliographie a été ajoutée,
+% rendant le gabarit plus ajusté aux besoins de plusieurs.
+%
+% Pour retrouvé le gabarit original, veuillez télécharger les
+% documents suivants: llncs2e.zip (.cls et autres) et 
+% typeinst.zip (.tex). Les documents ci-haut mentionnés ne sont pas 
+% disponibles au même endroit, alors je vous invite à fouiller le web. 
+%
+% Pour l'instant (02-2016) ils sont disponibles tous deux ici :
+%
+% http://kawahara.ca/springer-lncs-latex-template/
+%
+% Netkompt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[runningheads,a4paper]{llncs}
+  
+\usepackage[utf8]{inputenc}
+
+\usepackage{natbib}
+\bibliographystyle{apalike-fr}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage[french]{babel} % Pour adopter les règles de typographie française
+\usepackage[T1]{fontenc} % Pour que les lettres accentuées soient reconnues
+
+\usepackage{url}
+\urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+\urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+\urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|    
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+
+\mainmatter 
+
+\title{Compte rendu TP1 de NLP}
+
+\titlerunning{Compte rendu TP1 de NLP}
+
+\author{Pierre VALENTIN}
+
+\institute{Universite Laval}
+
+\authorrunning{Pierre VALENTIN}
+
+\toctitle{Résumé}
+\tocauthor{{}}
+
+\maketitle$$
+
+\begin{abstract}
+Dans ce document, je vais preciser comment jai extrais de linformation et realiser de la detection de langue automatique sur de fichiers texte. Je vais ici detailler lapplication des techniques vus en cour sur les expression regulieres et les modele nGram
+\end{abstract}
+
+\medskip
+
+\begingroup
+\let\clearpage\relax
+\tableofcontents
+\addcontentsline{toc}{section}{Introduction}
+\endgroup
+
+\medskip
+\medskip
+
+\section*{Introduction}
+
+
+\bibliography{references}
+\nocite{*} 
+
+\end{document}
