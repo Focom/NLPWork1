@@ -68,17 +68,13 @@ def addUnk(n,gram,fileName):
         return gram
 
 def serialize_dico(dico,NameFile):
-    file1 = open("./binPP/"+NameFile+".bin","wb")
+    file1 = open(NameFile+".bin","wb")
     pickle.dump(dico,file1)
     file1.close()
 
 def open_serialized_dico(NameFile):
-    file2 = open("./binPP/"+NameFile+".bin","rb")
+    file2 = open(NameFile+".bin","rb")
     return pickle.load(file2)
-
-dic = {"1":32,"a,":0.2}
-
-
 
 def query_yes_no(question, default="yes"):
     """Ask a yes/no question via raw_input() and return their answer.

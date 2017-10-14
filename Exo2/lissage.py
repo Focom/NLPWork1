@@ -59,7 +59,7 @@ def lissage(n,fileName):
         for table in trigram_prob: # Ajouter gestion de ¤
             for key in trigram_prob[table]:
                 trigram_prob[table][key] = d*trigram_prob[table][key]+d*bigram_prob[table[1]][key]+d*unigram_prob[key]
-                print(trigram_prob[table][key])
+                # print(trigram_prob[table][key])
         return trigram_prob
     
     if (n==2):
