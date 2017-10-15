@@ -15,9 +15,9 @@ test_file_number = 13
 
 # detect_language(Numéro du fichier dans le repertoire de test, N du modele nGram)
 # Print le code de la langue reconnue et la perplexité du modèle choisis.
-# detectLang.detect_language(test_file_number,1)
-# detectLang.detect_language(test_file_number,2)
-# detectLang.detect_language(test_file_number,3)
+detectLang.detect_language(test_file_number,1)
+detectLang.detect_language(test_file_number,2)
+detectLang.detect_language(test_file_number,3)
 
 # ====================================================================================================
 # Nécessite matplotlib
@@ -25,7 +25,7 @@ test_file_number = 13
 # ====================================================================================================
 
 # Affiche sur un graphique les perplexité de tous les modeles sur un même fichier
-# graph.graphFile(test_file_number)
+graph.graphFile(test_file_number)
 
-# Pour donner le resultat sur tous les fichier test dans la console
-detectLang.show_all_result()
+# Pour donner le résultat sur tous les fichier test dans la console
+# detectLang.show_all_result()
