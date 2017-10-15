@@ -76,7 +76,7 @@ def open_serialized_dico(NameFile):
     file2 = open(NameFile+".bin","rb")
     return pickle.load(file2)
 
-def query_yes_no(question, default="yes"):
+def query_yes_no(question, default="yes"): # Copy pasted from Stack Overflow
     """Ask a yes/no question via raw_input() and return their answer.
 
     "question" is a string that is presented to the user.
