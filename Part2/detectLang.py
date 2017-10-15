@@ -39,7 +39,7 @@ def create_all_pp_and_save_to_disc():
     helper.serialize_dico(pp_EN,"pp_EN")
     helper.serialize_dico(pp_SP,"pp_SP")
     helper.serialize_dico(pp_PO,"pp_PO")
-    print("Toutes les pp sont sauvegardé dans les fichiers bin, ne pas les supprimer :)")
+    print("Toutes les pp sont sauvegardées dans les fichiers bin, ne pas les supprimer :)")
 
 def detect_language(fileNumber,n):
   pp_FR = helper.open_serialized_dico("pp_FR")
@@ -53,6 +53,15 @@ def detect_language(fileNumber,n):
       score = result[key]
       lang = key[3]+key[4]
   print("la langue:",lang,"le score:",score)
-  return lang
+  return lang,score
 
+def show_all_result():
+  for i in range(1,21):
+    print("##################     Fichier test"+str(i)+".txt      ########################## ")
+    print("Unigram : ")
+    detect_language(i,1)
+    print("Bigram : ")
+    detect_language(i,2)
+    print("Trigram : ") 
+    detect_language(i,3)
 
