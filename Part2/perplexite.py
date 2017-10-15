@@ -88,15 +88,3 @@ def calcPerplexite(n,fileTraining,fileTest):
       result = (-1/n)*sum
       result = math.exp(result)
   return result
-
-# fileTraining = "./detect_langue/corpus_entrainement/english-training.txt"
-# fileTest = "./detect_langue/corpus_test/test4.txt"
-
-# fileTraining = "./detect_langue/corpus_entrainement/french-training.txt"
-# fileTest = "./detect_langue/corpus_test/test20.txt"
-
-
-# print(calcPerplexite(3,fileTraining,fileTest))
-
-# test = helper.addUnk(3,trigram.proba_trigram(fileName),fileName)
-# helper.save_dic_to_file(test,"test")
