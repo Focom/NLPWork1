@@ -11,7 +11,7 @@ def char_in_file(fileName):
             result +=1
     return result
 
-  # return lengh of file
+# return lengh of file
 def Get_lengh_of_file(fileName):
     total_charater = 0
     file = open(

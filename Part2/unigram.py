@@ -1,3 +1,4 @@
+
 import helper
 
 #{"a" = 0," ":0 }
@@ -23,8 +24,19 @@ def Count_unigram(fileName, emptyDictionary):
 def transform_Occurence_in_probabilist(fileName, OccurenceDictionary):
     for char in OccurenceDictionary:
         OccurenceDictionary[char] = OccurenceDictionary[char] / \
-            helper.Get_lengh_of_file(fileName)
+            Get_lengh_of_file(fileName)
     return OccurenceDictionary
+
+def Get_lengh_of_file(fileName):
+    total_charater = 0
+    file = open(
+        fileName, "r", encoding="utf8")
+    for line in file:
+        for char in line:
+            total_charater += 1
+    return total_charater
+
 
 def proba_unigram(fileName):
   return transform_Occurence_in_probabilist(fileName,Count_unigram(fileName,Create_empty_unigram(fileName)))
+

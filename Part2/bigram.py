@@ -50,3 +50,8 @@ def countBigram(fileName):
 
 def proba_bigram(fileName):
   return Transform_in_proba_bigram(Fill_bigram_dictionary(fileName, create_empty_bigram_dictionary(unigram.Create_empty_unigram(fileName))),fileName)
+
+
+# fileName = "./detect_langue/corpus_entrainement/english-training.txt"
+
+# print(proba_bigram(fileName))

@@ -7,7 +7,6 @@ import sys
 
 
 def create_pp_of_lang(code_lang):
-  
   if(code_lang=="EN"):
     file_training = "./detect_langue/corpus_entrainement/english-training.txt"
   if(code_lang == "FR"):
@@ -43,10 +42,6 @@ def create_all_pp_and_save_to_disc():
     print("Toutes les pp sont sauvegardé dans les fichiers bin, ne pas les supprimer :)")
 
 def detect_language(fileNumber,n):
-    # response = helper.query_yes_no("Avez vous generer les fichier binaire des modele nGram ?","yes")
-    # if (response == False):
-    #   create_all_pp_and_save_to_disc()
-    # else:
   pp_FR = helper.open_serialized_dico("pp_FR")
   pp_EN = helper.open_serialized_dico("pp_EN")
   pp_SP = helper.open_serialized_dico("pp_SP")
@@ -60,8 +55,4 @@ def detect_language(fileNumber,n):
   print("la langue:",lang,"le score:",score)
   return lang
 
-file1 = 19
 
-detect_language(file1,1)
-detect_language(file1,2)
-detect_language(file1,3)

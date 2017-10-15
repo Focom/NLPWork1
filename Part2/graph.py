@@ -23,5 +23,5 @@ def graphFile(fileNumber):
   plt.legend()
   plt.show()
 
-graphFile(14)
+# graphFile(14)
 

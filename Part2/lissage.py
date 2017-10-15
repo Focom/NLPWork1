@@ -4,7 +4,6 @@ import bigram
 import trigram
 import copy
 
-fileName = "./detect_langue/corpus_entrainement/english-training.txt"
 
 
 def laplace(k, n, gram, fileName):
@@ -72,6 +71,7 @@ def lissage(n,fileName):
         return bigram_prob  
 
 
+# fileName = "./detect_langue/corpus_entrainement/english-training.txt"
 # test = laplace(1,3,helper.addUnk(3,trigram.proba_trigram(fileName),fileName),fileName)
 # test = lissage(3,fileName)
 # helper.save_dic_to_file(str(test),'test')
