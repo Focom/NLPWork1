@@ -1,4 +1,4 @@
-## TP1 du traitement du language naturel
+## TP1 de traitement du language naturel
 #### Structure du projet
 
 
