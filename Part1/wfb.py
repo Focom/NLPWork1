@@ -1,4 +1,3 @@
-# p1 * p2 = exp(log(p1)+log(p2))
 import file
 import info
 import csv
@@ -53,15 +52,12 @@ def test_work(correct_table):
 
         if(attribut != answer[1]):
             attribut = answer[1]
-            # print(attribut)
 
         correction = answer[2]
         own_result = get_wfb_info(pays, attribut)
         if (correction == own_result):
-            # print('OK')
             correct += 1
         else:
-            # print('bad')
             bad += 1
     precision = (correct)/(correct+bad)*100
     return "Taux de précision avec le CSV de test: "+str(precision)+"%"
