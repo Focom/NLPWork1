@@ -53,15 +53,15 @@ def test_work(correct_table):
 
         if(attribut != answer[1]):
             attribut = answer[1]
-            print(attribut)
+            # print(attribut)
 
         correction = answer[2]
         own_result = get_wfb_info(pays, attribut)
         if (correction == own_result):
-            print('OK')
+            # print('OK')
             correct += 1
         else:
-            print('bad')
+            # print('bad')
             bad += 1
     precision = (correct)/(correct+bad)*100
     return "Taux de précision avec le CSV de test: "+str(precision)+"%"
