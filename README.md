@@ -1,4 +1,4 @@
-## TP1 de traitement du language naturel
+## TP1 de traitement du language naturel - Pierre VALENTIN
 #### Structure du projet
 
 
